@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Taller de escrapeo
+Paco Mekler  
+https://github.com/mekler/taller-de-scraping  
+---
+
+# ¿Quién soy?
+
+* Ingeniero en Telemática
+* CTO en OPI
+* Activista de datos abiertos
+
+---
+
+# Agenda
+1. Introducción
+1. XHTML, DOM y XPath
+1. Paquetes HTTP (POST y GET)
+1. Sesiones
+1. Ajax
+1. Herramientas
+1. Ejemplos
+
+---
+class: center, middle
+
+# Introducción
+
+* Introducción
+* Scraping es extraer datos de un formato “desordenado” a uno normalizado.
+
+---
+
+# PDF scraping
+
+---
+
+# Web Scraping
+
+---
+
+# Razones para escrapear
+* Muchas veces, la información en Internet está más actualizada que la de fuentes oficiales.
+
+* Twitter, Facebook, Instagram, etc. contienen datos que fuentes oficiales jamás tendrían.
+
+* Conseguir fuentes de datos es parte de las responsabilidades de un buen equipo de análisis de datos. 
+
+* Escrapear un sitio de gobierno es más rápido que esperar a que compartan sus datos en formato abierto.
+
+---
+class: center, middle
+
+# Tantita teoría
+
+---
+
+# HTML
+* Hypertext Markup Language
+* Tim Berners-Lee (trabajaba en el CERN)
+* Se pensó para compartir archivos entre redes de computadoras
+* Se crea el estándar HTML en 1990
+* World Wide Web Consortium (W3C) en 1994
+* Versión más actual es html5
+
+---
+
+# XHTML
+* “XHTML extiende HTML 4.0 combinando la sintaxis de HTML, diseñado para mostrar datos, con la de XML, diseñado para describir datos”.
+* Web semántica
+* Algunas modificaciones:
+    * Nombres de atributos y elementos en minúsculas (antes todo en mayúsculas horrendo)
+    * Los elementos que no estén vacíos necesitan etiquetas de cierre
+    * Requiere una definición concreta de versión de XHTML al inicio del archivo. 
+
+---
+
+# Nos falta...
+
+* Javascript
+  * Lenguaje, inicialmente, del lado del usuario. Vivía en los browsers y daba vida a las páginas estáticas de HTML.
+  * Existe un sistema operativo basado en javascript
+  * https://github.com/NodeOS/NodeOS
+  * https://github.com/os-js/OS.js
+  * NodeJS como servidor.
+* CSS
+  * Cascade style sheet
+  * CSS 3.X es la más actual
+* Sin estas cosas había páginas estáticas y aburridas.
+
+---
+
+# cURL
+
+“Es un proyecto de software que provee una librería (libcurl) y una herramienta desde línea de comando utilizando diversos protocolos.”
+ 
+* Está hecha en C
+
+* Prácticamente, todos los lenguajes tienen una implementación que usa cURL
+
+* Soporta peticiones encriptadas (SSL)
+
+---
+
+# AJAX
+    
+Asynchronous Javascript + XML
+
+* Agiliza los sitios web al no tener que recargar la página para ver contenido nuevo.
+* Para páginas web, la mezcla de tecnologías es XHTML+JS+CSS
+
+---
+
+# Document object model (DOM)
+
+“The Document Object Model is an application programming interface (API) for HTML and XML documents.”
+
+* DOM crea una estructura de árbol basado en un XHTML de entrada para poder extraer información de él.
+
+---
+
+# Ejemplo
+
+sed -r 's/(<\/?[A-Z]{1,6}>)/\L\1/g'
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
