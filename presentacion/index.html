@@ -48,7 +48,8 @@ class: center, middle
 
 # Introducción
 
-* Introducción
+---
+
 * Scraping es extraer datos de un formato “desordenado” a uno normalizado.
 
 ---
@@ -144,6 +145,41 @@ Asynchronous Javascript + XML
 # Ejemplo
 
 sed -r 's/(<\/?[A-Z]{1,6}>)/\L\1/g'
+
+---
+
+# Cheat Sheet de scrapy
+
+* Instalación
+
+  `sudo pip install scrapy`
+
+* Trae la página y te trae el objeto como si lo fuera a escrapear
+
+  `scrapy shell “<URL>” `
+
+* Desde la consola de scrapy:
+
+  Response. + TAB y ves las cosas que podrías extraer de ahí. 
+  
+* Por ejemplo, response.headers
+  response.xpath(‘/a’) trae los anchors que están un nivel abajo. 
+  response.xpath(‘./head’) trae apuntador al header y (‘./body’) se trae apuntador al body. Para traernos eso, .extract() al final.
+  
+---
+
+# Ejemplos
+* response.xpath(‘.//a’) Se trae pointers a los anchors de todos los niveles del mundo!
+
+* response.xpath('.//a').extract() se trae de hecho los cosos
+
+* response.xpath('.//a/text()').extract() se trae el texto sin los divs :O
+
+* response.xpath('.//a/@href').extract() se trae la propiedad href de los anchors
+
+* response.xpath('.//div/@class').extract() todas las clases de los divs
+
+* Un div específico: response.xpath('.//div[@class="box-g1 discovery-box"]')
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
