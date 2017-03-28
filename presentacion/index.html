@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
+    <title>Taller de Scraping</title>
     <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -50,15 +50,23 @@ class: center, middle
 
 ---
 
-* Scraping es extraer datos de un formato “desordenado” a uno normalizado.
+class: center, middle
+
+  Scraping <br> <br> es extraer datos de un formato <br> “desordenado” a uno normalizado.
 
 ---
 
 # PDF scraping
+Antes...
+<img src="./images/pdf.png" width="700">
 
+Después...
+<img src="./images/tabla.png" width="700">
 ---
 
 # Web Scraping
+
+<img src="./images/ml.png" width="700">
 
 ---
 
@@ -89,10 +97,12 @@ class: center, middle
 ---
 
 # XHTML
-* “XHTML extiende HTML 4.0 combinando la sintaxis de HTML, diseñado para mostrar datos, con la de XML, diseñado para describir datos”.
+
+“XHTML extiende HTML 4.0 combinando la sintaxis de HTML, diseñado para mostrar datos, con la de XML, diseñado para describir datos”.
+
 * Web semántica
 * Algunas modificaciones:
-    * Nombres de atributos y elementos en minúsculas (antes todo en mayúsculas horrendo)
+    * Nombres de atributos y elementos en minúsculas (antes todo en mayúsculas; horrendo)
     * Los elementos que no estén vacíos necesitan etiquetas de cierre
     * Requiere una definición concreta de versión de XHTML al inicio del archivo. 
 
@@ -109,7 +119,7 @@ class: center, middle
 * CSS
   * Cascade style sheet
   * CSS 3.X es la más actual
-* Sin estas cosas había páginas estáticas y aburridas.
+* Antes de estas cosas había páginas estáticas y aburridas.
 
 ---
 
@@ -146,6 +156,19 @@ Asynchronous Javascript + XML
 
 sed -r 's/(<\/?[A-Z]{1,6}>)/\L\1/g'
 
+<img src="./images/sed.png" width="700">
+
+---
+
+<img src="./images/arbol.png" width="700">
+
+---
+class: center, middle
+
+# XPath
+
+“XML Path Language es un lenguaje de consulta (query language) para seleccionar nodos de un documento XML”
+
 ---
 
 # Cheat Sheet de scrapy
@@ -158,13 +181,13 @@ sed -r 's/(<\/?[A-Z]{1,6}>)/\L\1/g'
 
   `scrapy shell “<URL>” `
 
-* Desde la consola de scrapy:
+* Desde la consola de scrapy, **Response. + TAB** permite ver las cosas que podrías extraer de ahí. Por ejemplo:
+  * response.headers
+  * response.xpath(‘/a’) trae los anchors que están un nivel abajo. 
+  * response.xpath(‘./head’) trae apuntador al header 
+  * response.xpath(‘./body’) trae apuntador al body. 
 
-  Response. + TAB y ves las cosas que podrías extraer de ahí. 
-  
-* Por ejemplo, response.headers
-  response.xpath(‘/a’) trae los anchors que están un nivel abajo. 
-  response.xpath(‘./head’) trae apuntador al header y (‘./body’) se trae apuntador al body. Para traernos eso, .extract() al final.
+* Para traer el contenido y no sólo el apuntador, .extract() al final.
   
 ---
 
@@ -180,6 +203,51 @@ sed -r 's/(<\/?[A-Z]{1,6}>)/\L\1/g'
 * response.xpath('.//div/@class').extract() todas las clases de los divs
 
 * Un div específico: response.xpath('.//div[@class="box-g1 discovery-box"]')
+
+---
+
+# Básico en scrapy
+
+* Scrapy startproject ….
+
+En items.py van los cositos a extraer con las arañas de clase scrapy.Item
+
+En /spiders va el código de scrapeo; cada coso es de tipo CrawlSpider que importas de scrapy.spiders
+
+  - Hay que definir cosas como el dominio en el que va a scrapear, la paginación (para picarle next en la página sig vs. para dar click en un item y guardarlo; unas regexps sobre la estructura de las URLs te dirá qué hacer), etc. 
+
+  - Das los xpaths de los metadatos que quieres guardar (los mismos items que viven en items.py).
+
+Lo corres como scrapy crawl ml crawler y puedes escupir a archivo las cosas que va sacando el scrapy.
+
+---
+
+# HTTP
+
+* Un paquete de HTTP tiene headers y body. No confundir con el del HTML, que tiene su head y body y ambos van dentro del body del HTTP. Según el sitio al que hagas curl, puedes o no necesitar headers y/o sesiones. Es más seguro meter usuarios en el header del HTTP vs los parámetros en la URL.
+
+* Por otro lado, hay GETs y POSTs. El get mete las variables en el URL. El Post las mete en el --data. 
+
+* Si todo tu sitio web estuviera con POSTs, no se indexaría en Google, todo tendría la misma URL y sólo cambiarían los datos que mandamos.
+
+---
+
+# cURL
+
+* Podemos armar peticiones HTTP en la consola y en python. Podemos decir en los headers que tipo de user-agent tenemos, etc.
+
+* Para escrapear con BeautifulSoup hay que programar más líneas.
+
+* Podemos usar TOR y fingir que somos usuarios con un user-agent normal.
+
+---
+class: center, middle
+
+#Gracias
+
+oscar.mekler@gmail.com  
+elmekler@opi.la  
+@meklerg
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
